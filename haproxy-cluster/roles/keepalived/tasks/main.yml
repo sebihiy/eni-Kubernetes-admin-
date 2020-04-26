@@ -1,0 +1,25 @@
+---
+- name: install keepalived
+  package:
+    name: keepalived
+    state: latest
+
+- name: copy keepalived.conf
+  template:
+    src: ../templates/keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
+
+- name: copy check_apiserver
+  template:
+    src: ../templates/check_apiserver.sh
+    dest: /etc/keepalived/check_apiserver.sh
+
+- name: enable keepalived
+  systemd:
+    name: keepalived
+    enabled: yes
+  
+- name: restart keepalived
+  systemd:
+    state: restarted
+    name: keepalived

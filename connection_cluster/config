@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Config
+preferences: {}
+
+clusters:
+- cluster:
+  name: admink8s
+- cluster:
+  name: dev
+
+users:
+- name: developer
+- name: admink8s
+
+contexts:
+- context:
+  name: admink8s
+- context:
+  name: devk8s

@@ -1,0 +1,8 @@
+---
+virtual_ip: 192.168.1.103
+interface: eth2
+priority_1: 101
+priority_2: 100
+state_master: master
+state_backup: BACKUP
+auth_pass: 4be37dc3b4c90194d1600c483e10ad1d

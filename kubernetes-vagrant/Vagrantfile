@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "bento/ubuntu-18.04"
+  N = 3
+
+  config.vm.provider "virtualbox" do |v|
+    v.cpus = 2
+    v.memory = 2048 
+  end
+  (1..N).each do |machine_id|
+      config.vm.define "master-#{machine_id}" do |machine|
+      machine.vm.hostname = "master-#{machine_id}"
+      machine.vm.network "private_network", ip: "172.16.77.20#{+machine_id}"
+      machine.vm.network "public_network", bridge: "wlp59s0", ip: "192.168.1.20#{+machine_id}"
+      machine.vm.network "forwarded_port", guest: 22, host: "24#{2+machine_id}"
+      machine.vm.network "forwarded_port", guest: 6443, host: "65#{4+machine_id}"
+
+    end
+  end
+end

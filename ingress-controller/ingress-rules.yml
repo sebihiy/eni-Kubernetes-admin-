@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: goweb-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /goweb-ui
+        backend:
+          serviceName: goweb-clusterip
+          servicePort: 8080

@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: goweb-ingress-v2
+spec:
+  rules:
+  - host: goweb.cluster.local
+    http:
+      paths:
+      - backend:
+          serviceName: goweb-clusterip
+          servicePort: 8080
+  - host: goweb-v2.cluster.local
+    http:
+      paths:
+      - backend:
+          serviceName: goweb-clusterip-v2
+          servicePort: 8080
